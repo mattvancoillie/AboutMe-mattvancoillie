@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,19 +24,35 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        findViewById<Button>(R.id.nicknameButton).setOnClickListener {
+        findViewById<Button>(R.id.nicknameButton).setOnClickListener{
             addNickname(it)
         }
     }
 
     private fun addNickname(view: View)  {
+
         var nicknameButton = findViewById<Button>(R.id.nicknameButton)
         var nicknameTextView: TextView = findViewById<TextView>(R.id.nicknameTextView)
         var nicknameEditText: EditText = findViewById<EditText>(R.id.nicknameEditText)
 
+        if (nicknameEditText.text.isNotBlank()) {
+
+            nicknameTextView.text = nicknameEditText.text
+
+            nicknameEditText.visibility = View.GONE
+
+            view.visibility = View.GONE
+
+            nicknameTextView.visibility = View.GONE
+        } else  {
+            Toast.makeText(this,"Nickname moet ingevuld worden.", Toast.LENGTH_LONG).show()
+        }
+
+
+
     }
 
 
 
 
-    }
+}
