@@ -16,6 +16,7 @@ import org.w3c.dom.Text
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val myName: MyName = MyName()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onStart()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
+        binding.myName = myName
 
         binding.nicknameButton.setOnClickListener(){
             addNickname(it)
@@ -42,7 +43,8 @@ class MainActivity : AppCompatActivity() {
         if (binding.nicknameEditText.text.isNotBlank()) {
 
             binding.apply {
-                nicknameTextView.text = nicknameEditText.text
+                myName?.nickname = nicknameEditText.text.toString()
+                //nicknameTextView.text = nicknameEditText.text
                 nicknameEditText.visibility = View.GONE
                 nicknameButton.visibility = View.GONE
                 nicknameTextView.visibility = View.VISIBLE
