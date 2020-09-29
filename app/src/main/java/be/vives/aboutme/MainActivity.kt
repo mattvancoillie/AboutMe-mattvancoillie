@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-            
+
         } else  {
             Toast.makeText(this,"Nickname moet ingevuld worden.", Toast.LENGTH_LONG).show()
         }
