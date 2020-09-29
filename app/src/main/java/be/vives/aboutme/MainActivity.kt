@@ -13,6 +13,8 @@ import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
+
+
     private lateinit var nicknameButton: Button;
     private lateinit var nicknameTextView: TextView;
     private lateinit var nicknameEditText: EditText;
