@@ -17,9 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,30 +28,36 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        findViewById<Button>(R.id.nicknameButton).setOnClickListener{
+
+        binding.nicknameButton.setOnClickListener(){
             addNickname(it)
         }
     }
 
     private fun addNickname(view: View)  {
 
-        var nicknameTextView: TextView = findViewById<TextView>(R.id.nicknameTextView)
-        var nicknameEditText: EditText = findViewById<EditText>(R.id.nicknameEditText)
+        var nicknameTextView: TextView = binding.nicknameTextView
+        var nicknameEditText: EditText = binding.nicknameEditText
 
-        if (nicknameEditText.text.isNotBlank()) {
+        if (binding.nicknameEditText.text.isNotBlank()) {
 
-            nicknameTextView.text = nicknameEditText.text
+            binding.apply {
+                nicknameTextView.text = nicknameEditText.text
+                nicknameEditText.visibility = View.GONE
+                nicknameButton.visibility = View.GONE
+                nicknameTextView.visibility = View.VISIBLE
+            }
 
-            nicknameEditText.visibility = View.GONE
-
-            view.visibility = View.GONE
-
-            nicknameTextView.visibility = View.VISIBLE
+            /*
+            binding.nicknameTextView.text = binding.nicknameEditText.text
+            binding.nicknameEditText.visibility = View.GONE
+            binding.view.visibility = View.GONE
+            binding.nicknameTextView.visibility = View.VISIBLE
+             */
 
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-
-
+            
         } else  {
             Toast.makeText(this,"Nickname moet ingevuld worden.", Toast.LENGTH_LONG).show()
         }
