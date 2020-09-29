@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun addNickname(view: View)  {
 
-        var nicknameButton = findViewById<Button>(R.id.nicknameButton)
         var nicknameTextView: TextView = findViewById<TextView>(R.id.nicknameTextView)
         var nicknameEditText: EditText = findViewById<EditText>(R.id.nicknameEditText)
 
