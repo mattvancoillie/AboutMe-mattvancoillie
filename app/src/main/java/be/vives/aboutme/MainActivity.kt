@@ -9,15 +9,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import be.vives.aboutme.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
 
-
-    private lateinit var nicknameButton: Button;
-    private lateinit var nicknameTextView: TextView;
-    private lateinit var nicknameEditText: EditText;
 
 
 
@@ -27,7 +26,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
+        //aanmaken van nieuwe binding - we willen deze klasse binden aan de activity_main
+
         super.onStart()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
         findViewById<Button>(R.id.nicknameButton).setOnClickListener{
             addNickname(it)
         }
